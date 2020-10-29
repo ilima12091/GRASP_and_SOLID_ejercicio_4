@@ -9,14 +9,20 @@ using System.Collections.Generic;
 
 namespace Full_GRASP_And_SOLID
 {
+    /*
+        Decidimos que para hacer que se aplique el patrón Creator era necesario quitarle la responabilidad de crear un Step
+        al Program y dársela a la clase que contiene los Steps que es Recipe, lo cual la hace experta en la creación de los
+        objetos de tipo Step. Recipe guarda instancias de objetos del tipo Step.
+    */
     public class Recipe
     {
         private IList<Step> steps = new List<Step>();
 
         public Product FinalProduct { get; set; }
 
-        public void AddStep(Step step)
+        public void AddStep(Product input, double quantity, Equipment equipment, int time)
         {
+            Step step = new Step(input, quantity, equipment, time);
             this.steps.Add(step);
         }
 

@@ -10,6 +10,11 @@ using System.Linq;
 
 namespace Full_GRASP_And_SOLID
 {
+    /*
+        Esta clase cumple con el patrón Creator porque los métodos AddProductToCatalog y AddEquipmentToCatalog reciben los datos
+        necesarios para crear objetos del tipo Product y Equipment respectivamente. Dicha clase guarda instancias del tipo Product y del tipo
+        Equipment, lo cual la hace la responsable de crearlos.
+    */
     public class Program
     {
         private static List<Product> productCatalog = new List<Product>();
@@ -22,8 +27,8 @@ namespace Full_GRASP_And_SOLID
 
             Recipe recipe = new Recipe();
             recipe.FinalProduct = GetProduct("Café con leche");
-            recipe.AddStep(new Step(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120));
-            recipe.AddStep(new Step(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60));
+            recipe.AddStep(GetProduct("Café"), 100, GetEquipment("Cafetera"), 120);
+            recipe.AddStep(GetProduct("Leche"), 200, GetEquipment("Hervidor"), 60);
 
             IPrinter printer;
             printer = new ConsolePrinter();
